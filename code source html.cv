@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Maël DALIBOT</title>
+<style>
+	  :root{
+		--dark: #2b3242;
+		--sidebar: #9aa0a8;
+		--sidebar-text: #f2f2f2;
+		--main-bg: #ffffff;
+		--text: #2b3242;
+		--muted: #6b7280;
+		--radius: 22px;
+	  }
+
+	  * { box-sizing: border-box; }
+
+	  body {
+		margin: 0;
+		background: #e9eaec;
+		font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+		color: var(--text);
+		display: flex;
+		justify-content: center;
+		padding: 32px 16px;
+	  }
+	  .cv {
+		width: 100%;
+		max-width: 900px;
+		background: var(--main-bg);
+		border-radius: var(--radius);
+		overflow: hidden;
+		box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+	  }
+
+	  .header {
+		background: var(--dark);
+		color: #fff;
+		text-align: center;
+		padding: 36px 24px 28px;
+		border-radius: 0 0 40px 40px;
+	  }
+	  .header h1 {
+		margin: 0;
+		font-size: 2.2rem;
+		letter-spacing: 2px;
+		font-weight: 800;
+	  }
+	  .header .subtitle {
+		font-size: 0.95rem;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		color: #cfd3da;
+		margin-top: 4px;
+	  }
+	  .header .intro {
+		max-width: 640px;
+		margin: 18px auto 0;
+		font-size: 0.85rem;
+		line-height: 1.5;
+		color: #e4e6ea;
+	  }
+
+	  /* ---- CORPS : 2 COLONNES ---- */
+	  .body {
+		display: grid;
+		grid-template-columns: 260px 1fr;
+	  }
+
+	  /* Colonne latérale */
+	  .sidebar {
+		background: var(--sidebar);
+		color: var(--sidebar-text);
+		padding: 28px 22px;
+	  }
+	  .sidebar section { margin-bottom: 26px; }
+	  .sidebar h2 {
+		font-size: 0.95rem;
+		font-weight: 700;
+		margin: 0 0 10px;
+		padding-bottom: 6px;
+		border-bottom: 2px solid rgba(255,255,255,0.6);
+	  }
+	  .sidebar ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	  }
+	  .sidebar li {
+		font-size: 0.82rem;
+		margin-bottom: 8px;
+		line-height: 1.4;
+	  }
+	  .contact-item {
+		display: flex;
+		gap: 8px;
+		align-items: flex-start;
+	  }
+
+	  /* Colonne principale */
+	  .main {
+		padding: 30px 32px;
+	  }
+	  .main section { margin-bottom: 26px; }
+	  .main h2 {
+		font-size: 1rem;
+		font-weight: 700;
+		letter-spacing: 0.5px;
+		margin: 0 0 10px;
+		padding-bottom: 6px;
+		border-bottom: 2px solid var(--dark);
+		display: inline-block;
+	  }
+	  .main p {
+		font-size: 0.85rem;
+		line-height: 1.6;
+		color: #3d3d3d;
+		text-align: justify;
+		margin: 0;
+	  }
+	  .main ul {
+		margin: 0;
+		padding-left: 18px;
+	  }
+	  .main li {
+		font-size: 0.85rem;
+		line-height: 1.6;
+	  }
+
+	  .entry { margin-bottom: 14px; }
+	  .entry .date {
+		font-weight: 700;
+		font-size: 0.85rem;
+	  }
+	  .entry .place {
+		color: var(--muted);
+	  }
+	  .entry p {
+		margin-top: 4px;
+	  }
+
+	  /* Responsive mobile */
+	  @media (max-width: 640px) {
+		.body { grid-template-columns: 1fr; }
+		.header { border-radius: 0 0 28px 28px; }
+	  }
+</style>
+</head>
+<body>
+
+<div class="cv">
+
+  <div class="header">
+    <h1>MAEL DALIBOT</h1>
+    <div class="subtitle">Étudiant en informatique</div>
+    <p class="intro">
+      Actuellement étudiant en première année de licence Mathématiques, Informatique, Physique,
+      Chimie et Sciences de l'Ingénieur (MIPCSI) à l'Université des Antilles (campus de Fouillole),
+      je souhaite poursuivre mon parcours dans le domaine de l'informatique en intégrant une
+      formation professionnalisante, notamment le BTS Services Informatiques aux Organisations (SIO).
+    </p>
+  </div>
+
+  <div class="body">
+
+    <aside class="sidebar">
+      <section>
+        <h2>Coordonnées</h2>
+        <ul>
+          <li class="contact-item">✉️ mael.dalibot62@gmail.com</li>
+          <li class="contact-item">📞 +590 690 24 02 62</li>
+          <li class="contact-item">📍 Résidence la Cotonnade, Beausoleil – 97122 Baie-Mahault</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Savoir-être</h2>
+        <ul>
+          <li>Motivation et persévérance</li>
+          <li>Capacité d'adaptation rapide</li>
+          <li>Travail en équipe</li>
+          <li>Esprit logique</li>
+          <li>Autonomie</li>
+          <li>Rigueur</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Langues</h2>
+        <ul>
+          <li>Anglais : Niveau B2-C1</li>
+          <li>Espagnol : Niveau scolaire</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Centres d'intérêts</h2>
+        <ul>
+          <li>Informatique et programmation</li>
+          <li>Développement logiciel / jeux vidéo / cybersécurité</li>
+          <li>Technologies modernes (fusées, satellites, informatique quantique...)</li>
+        </ul>
+      </section>
+    </aside>
+
+    <main class="main">
+      <section>
+        <h2>Profil</h2>
+        <p>
+          Titulaire d'un baccalauréat Sciences technologies de l'Industrie et du Développement Durable
+          (STI2D) obtenu avec mention bien, j'ai acquis de bonnes bases scientifiques et technologiques.
+          Ma formation actuelle renforce ces compétences, notamment en informatique. Motivé et impliqué,
+          j'aime apprendre de nouvelles notions et relever des défis. Je suis également capable de
+          travailler en autonomie tout en m'intégrant facilement dans un groupe de travail.
+        </p>
+      </section>
+
+      <section>
+        <h2>Compétences</h2>
+        <ul>
+          <li>Bases en Python / C</li>
+          <li>Bases en bash</li>
+          <li>Manipulation de structures de données simples (listes, tableaux, dictionnaires)</li>
+          <li>Résolution de problèmes logiques</li>
+          <li>Analyse de systèmes techniques</li>
+          <li>Compréhension du fonctionnement des objets et systèmes industriels</li>
+          <li>Approche du développement durable et de l'efficacité énergétique</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Expériences</h2>
+        <div class="entry">
+          <div class="date">2023 – 2024 : Divers projets technologiques</div>
+          <p>Conception d'un abribus connecté et écoresponsable ainsi qu'un système de tri sélectif.
+             Mise en réseau et aspects techniques liés au fonctionnement du système.</p>
+        </div>
+        <div class="entry">
+          <div class="date">2021 – 2022 : Stage employé de rayon</div>
+          <p>Mise en rayon des produits sur la surface de vente, entretien de l'espace de vente.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Formations</h2>
+        <div class="entry">
+          <span class="date">2025 – 2026 :</span> Licence MIPCSI
+          <span class="place">— Campus de Fouillole</span>
+        </div>
+        <div class="entry">
+          <span class="date">2024 – 2025 :</span> Baccalauréat STI2D, Mention Bien
+          <span class="place">— Lycée Charles Coeffin</span>
+        </div>
+      </section>
+    </main>
+
+  </div>
+</div>
+
+</body>
+</html>
+
+
+
