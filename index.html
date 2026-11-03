@@ -38,39 +38,40 @@
       display: flex; justify-content: space-between; align-items: center;
       padding: 1.42593vh 2.03709vh; flex-wrap: wrap; gap: 1.01849vh;
     }
-    .logo { font-weight: 700; font-size: 1.1rem; color: var(--text); }
+    .logo { font-weight: 700; font-size: 1.25rem; color: var(--text); }
     .logo span { color: var(--accent); }
     nav ul { list-style: none; display: flex; gap: 1.83337vh; flex-wrap: wrap; }
-    nav ul a { color: var(--muted); font-size: 0.92rem; }
+    nav ul a { color: var(--muted); font-size: 1rem; }
     nav ul a:hover { color: var(--accent); text-decoration: none; }
 
     section { padding: 7.12965vh 2.03709vh; }
     section:nth-of-type(even) { background: var(--bg-alt); }
     .container { max-width: 101.85186vh; margin: auto; }
-    h2 { font-size: 1.8rem; margin-bottom: 0.81477vh; }
+    h2 { font-size: 2rem; margin-bottom: 0.81477vh; }
     h2::after {
       content: ""; display: block; width: 5.09256vh; height: 0.40744vh;
       background: linear-gradient(90deg, var(--accent), var(--accent-2));
       border-radius: 0.20372vh; margin-top: 0.81477vh;
     }
-    .subtitle { color: var(--muted); margin: 1.42593vh 0 3.05558vh; max-width: 73.33337vh; }
+    .subtitle { color: var(--muted); margin: 1.42593vh 0 3.05558vh; max-width: 73.33337vh; font-size: 1.05rem; }
 
     /* Hero */
     .hero { padding: 11.20372vh 2.03709vh 9.16663vh; text-align: center; }
     .hero .tag {
       display: inline-block; padding: 0.61116vh 1.42593vh; border-radius: 101.75vh;
       border: 0.10186vh solid var(--border); color: var(--accent);
-      font-size: 0.85rem; margin-bottom: 2.03709vh;
+      font-size: 0.95rem; margin-bottom: 2.03709vh;
     }
-    .hero h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); line-height: 1.15; margin-bottom: 1.62965vh; }
+    .hero h1 { font-size: clamp(2.4rem, 6.6vw, 4rem); line-height: 1.15; margin-bottom: 1.62965vh; }
     .hero h1 span {
       background: linear-gradient(90deg, var(--accent), var(--accent-2));
       -webkit-background-clip: text; background-clip: text; color: transparent;
     }
-    .hero p { color: var(--muted); max-width: 67.22221vh; margin: 0 auto 3.05558vh; font-size: 1.1rem; }
+    .hero p { color: var(--muted); max-width: 67.22221vh; margin: 0 auto 3.05558vh; font-size: 1.2rem; }
     .btn {
       display: inline-block; padding: 1.22221vh 2.64814vh; border-radius: 0.81477vh;
       font-weight: 600; margin: 0.5093vh; transition: transform 0.15s ease;
+      font-size: 1.05rem;
     }
     .btn:hover { transform: translateY(-2px); text-decoration: none; }
     .btn-primary { background: var(--accent); color: #0f172a; }
@@ -84,19 +85,19 @@
       transition: transform 0.15s ease, border-color 0.15s ease;
     }
     .card:hover { transform: translateY(-3px); border-color: var(--accent); }
-    .card h3 { margin-bottom: 0.81477vh; font-size: 1.1rem; }
-    .card p { color: var(--muted); font-size: 0.95rem; }
-    .card ul { margin: 1.01849vh 0 0 2.54628vh; color: var(--muted); font-size: 0.92rem; }
+    .card h3 { margin-bottom: 0.81477vh; font-size: 1.2rem; }
+    .card p { color: var(--muted); font-size: 1.05rem; }
+    .card ul { margin: 1.01849vh 0 0 2.54628vh; color: var(--muted); font-size: 1rem; }
     .card ul ul { margin-top: 0.40744vh; }
-    .card .label { color: var(--accent); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 1.42593vh; }
-    .icon { font-size: 1.8rem; margin-bottom: 1.01849vh; }
+    .card .label { color: var(--accent); font-size: 0.86rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 1.42593vh; }
+    .icon { font-size: 2rem; margin-bottom: 1.01849vh; }
     .chips { display: flex; flex-wrap: wrap; gap: 0.81477vh; margin-top: 1.42593vh; }
     .chip {
-      font-size: 0.8rem; padding: 0.40744vh 1.01849vh; border-radius: 0.61116vh;
+      font-size: 0.88rem; padding: 0.40744vh 1.01849vh; border-radius: 0.61116vh;
       background: rgba(56, 189, 248, 0.12); color: var(--accent);
     }
     .doc-link {
-      display: inline-block; margin-top: 1.42593vh; font-size: 0.88rem;
+      display: inline-block; margin-top: 1.42593vh; font-size: 0.96rem;
       padding: 0.61116vh 1.22221vh; border: 0.10186vh solid var(--border); border-radius: 0.61116vh;
     }
     .doc-link:hover { border-color: var(--accent); text-decoration: none; }
@@ -110,20 +111,20 @@
       background: var(--accent); border: 0.30558vh solid var(--bg);
     }
     section:nth-of-type(even) .tl-item::before { border-color: var(--bg-alt); }
-    .tl-date { color: var(--accent); font-size: 0.85rem; font-weight: 600; }
-    .tl-item h3 { margin: 0.20372vh 0 0.40744vh; }
-    .tl-item p { color: var(--muted); font-size: 0.95rem; }
+    .tl-date { color: var(--accent); font-size: 0.95rem; font-weight: 600; }
+    .tl-item h3 { margin: 0.20372vh 0 0.40744vh; font-size: 1.2rem; }
+    .tl-item p { color: var(--muted); font-size: 1.05rem; }
 
     /* Compétences */
     .skill { margin-bottom: 1.83337vh; }
-    .skill-head { display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 0.61116vh; }
+    .skill-head { display: flex; justify-content: space-between; font-size: 1.05rem; margin-bottom: 0.61116vh; }
     .bar { height: 0.81477vh; background: var(--card); border-radius: 0.40744vh; overflow: hidden; }
     .bar div { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); border-radius: 0.40744vh; }
 
-    .todo { font-style: italic; color: var(--muted); margin-bottom: 2.03709vh; }
+    .todo { font-style: italic; color: var(--muted); margin-bottom: 2.03709vh; font-size: 1.05rem; }
 
     /* Contact */
-    .contact-list { list-style: none; display: grid; gap: 1.22221vh; }
+    .contact-list { list-style: none; display: grid; gap: 1.22221vh; font-size: 1.05rem; }
     .contact-list li {
       background: var(--card); border: 0.10186vh solid var(--border);
       border-radius: 1.01849vh; padding: 1.42593vh 1.83337vh;
@@ -132,7 +133,7 @@
 
     footer {
       text-align: center; padding: 3.05558vh 2.03709vh; color: var(--muted);
-      font-size: 0.85rem; border-top: 0.10186vh solid var(--border);
+      font-size: 0.95rem; border-top: 0.10186vh solid var(--border);
     }
 
     @media (max-width: 61.11116vh) {
@@ -228,7 +229,7 @@
     <section id="competences">
       <div class="container">
         <h2>Compétences</h2>
-        <p class="subtitle">Mes compétences en développement web et mes savoir-faire associés, en progression continue.</p>
+        <p class="subtitle">Mes compétences en développement web et mes savoir-faire associés, en progression continuous.</p>
         <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(30.55558vh, 1fr));">
           <div>
             <div class="skill">
@@ -388,7 +389,7 @@
           </div>
           <div class="card">
             <div class="icon">🧩</div>
-            <h3> CV  format html </h3></h3>
+            <h3> CV  format html </h3>
             <p>Décris l'objectif, les technologies utilisées, ta part du travail et le résultat.</p>
             <div class="chips"><span class="chip">JavaScript</span><span class="chip">PHP</span></div>
             <a class="doc-link" href="cv.html"></a>
