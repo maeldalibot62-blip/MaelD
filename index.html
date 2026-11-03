@@ -34,26 +34,26 @@
       border-bottom: 0.13445vh solid var(--border);
     }
     nav {
-      max-width: 134.44445vh; margin: auto;
+      max-width: 168.05556vh; margin: auto;
       display: flex; justify-content: space-between; align-items: center;
-      padding: 1.88223vh 2.68896vh; flex-wrap: wrap; gap: 1.34441vh;
+      padding: 1.88223vh 2.68896vh; flex-wrap: wrap; gap: 1.68051vh;
     }
     .logo { font-weight: 700; font-size: 1.25rem; color: var(--text); }
     .logo span { color: var(--accent); }
-    nav ul { list-style: none; display: flex; gap: 2.42004vh; flex-wrap: wrap; }
+    nav ul { list-style: none; display: flex; gap: 3.02505vh; flex-wrap: wrap; }
     nav ul a { color: var(--muted); font-size: 1rem; }
     nav ul a:hover { color: var(--accent); text-decoration: none; }
 
     section { padding: 9.41114vh 2.68896vh; }
     section:nth-of-type(even) { background: var(--bg-alt); }
-    .container { max-width: 134.44445vh; margin: auto; }
+    .container { max-width: 168.05556vh; margin: auto; }
     h2 { font-size: 2rem; margin-bottom: 1.07549vh; }
     h2::after {
       content: ""; display: block; width: 6.72218vh; height: 0.53782vh;
       background: linear-gradient(90deg, var(--accent), var(--accent-2));
       border-radius: 0.26891vh; margin-top: 1.07549vh;
     }
-    .subtitle { color: var(--muted); margin: 1.88223vh 0 4.03337vh; max-width: 96.80004vh; font-size: 1.05rem; }
+    .subtitle { color: var(--muted); margin: 1.88223vh 0 4.03337vh; max-width: 121.00005vh; font-size: 1.05rem; }
 
     /* Hero */
     .hero { padding: 14.78891vh 2.68896vh 12.09996vh; text-align: center; }
@@ -67,7 +67,7 @@
       background: linear-gradient(90deg, var(--accent), var(--accent-2));
       -webkit-background-clip: text; background-clip: text; color: transparent;
     }
-    .hero p { color: var(--muted); max-width: 88.73332vh; margin: 0 auto 4.03337vh; font-size: 1.2rem; }
+    .hero p { color: var(--muted); max-width: 110.91665vh; margin: 0 auto 4.03337vh; font-size: 1.2rem; }
     .btn {
       display: inline-block; padding: 1.61332vh 3.49555vh; border-radius: 1.07549vh;
       font-weight: 600; margin: 0.67228vh; transition: transform 0.15s ease;
@@ -78,7 +78,7 @@
     .btn-outline { border: 0.13445vh solid var(--accent); color: var(--accent); }
 
     /* Cartes */
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(34.95559vh, 1fr)); gap: 2.68896vh; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(43.69449vh, 1fr)); gap: 3.36120vh; }
     .card {
       background: var(--card); border: 0.13445vh solid var(--border);
       border-radius: 1.61332vh; padding: 4.03337vh;
@@ -91,7 +91,7 @@
     .card ul ul { margin-top: 0.53782vh; }
     .card .label { color: var(--accent); font-size: 0.86rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 1.88223vh; }
     .icon { font-size: 2rem; margin-bottom: 1.34441vh; }
-    .chips { display: flex; flex-wrap: wrap; gap: 1.07549vh; margin-top: 1.88223vh; }
+    .chips { display: flex; flex-wrap: wrap; gap: 1.34436vh; margin-top: 1.88223vh; }
     .chip {
       font-size: 0.88rem; padding: 0.53782vh 1.34441vh; border-radius: 0.80673vh;
       background: rgba(56, 189, 248, 0.12); color: var(--accent);
@@ -124,7 +124,7 @@
     .todo { font-style: italic; color: var(--muted); margin-bottom: 2.68896vh; font-size: 1.05rem; }
 
     /* Contact */
-    .contact-list { list-style: none; display: grid; gap: 1.61332vh; font-size: 1.05rem; }
+    .contact-list { list-style: none; display: grid; gap: 2.01665vh; font-size: 1.05rem; }
     .contact-list li {
       background: var(--card); border: 0.13445vh solid var(--border);
       border-radius: 1.34441vh; padding: 1.88223vh 2.42004vh;
@@ -229,7 +229,7 @@
       <div class="container">
         <h2>Compétences</h2>
         <p class="subtitle">Mes compétences en développement web et mes savoir-faire associés, en progression continue.</p>
-        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(34.95559vh, 1fr));">
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(43.69449vh, 1fr));">
           <div>
             <div class="skill">
               <div class="skill-head"><span>HTML / CSS</span><span>Solide</span></div>
@@ -299,7 +299,7 @@
               <li>Documentation de la solution</li>
             </ul>
             <div class="chips"><span class="chip">PHP</span><span class="chip">Html</span></div>
-            <a class="doc-link" href="cv.html" target="_blank">Accéder</a>📄 Cv </a>
+            <a class="doc-link" href="cv.html" target="_blank">Accéder</a> 📄 Cv 
           </div>
           <div class="card">
             <div class="icon">📁</div>
@@ -409,7 +409,6 @@
             <p>Description des situations vécues en TP et des compétences mobilisées.</p>
             <a class="doc-link" href="fiches-situation-professionnelle-TP1-TP2.html">Consulter</a>
           </div>
-          </div>
           <div class="card">
             <div class="icon">📄</div>
             <h3>CV</h3>
@@ -441,16 +440,13 @@
             <h3>IA et développement</h3>
             <p>Impact des assistants IA sur la façon de coder et sur les métiers du web.</p>
           </div>
-        </div>
-        </div>
           <div class="card">
-            <div class="icon">📄</div>
-            <h3>IActu-2026 </h3>
-            <p>• Langages & Écosystèmes : Disponible depuis le 17 mars 2026, Java 26 intègre le support natif de HTTP/3 (QUIC), l'optimisation du G1 GC et des avancées sur la réflexion et les lazy constants. À l'inverse, l'écosystème PHP essuie fin octobre la découverte de vulnérabilités critiques baptisées PHP2Shell (CVE-2026-109618 et CVE-2026-109619).
-
-• Cybersécurité : Les attaques XSS ciblent désormais les agents IA autonomes via l'injection indirecte de prompt et se déplacent vers le DOM. La réponse technique repose sur trois standards natifs : Trusted Types, Strict CSP et l'API HTML Sanitizer.
-
-• IA, Société & Régulation : Si l'IA automatise les tâches et redéfinit l'organisation du travail, l'empreinte écologique de ses datacenters s'alourdit considérablement. Face aux risques environnementaux et cognitifs, l'IA Act européen impose désormais une régulation stricte.</p>
+            <div class="icon">📰</div>
+            <h3>Actualité IActu-2026</h3>
+            <p><strong>• Langages :</strong> Java 26 intègre HTTP/3 et G1 GC ; PHP fait face aux failles PHP2Shell.<br>
+            <strong>• Sécurité :</strong> Les XSS ciblent les agents IA ; riposte via Trusted Types, Strict CSP et HTML Sanitizer.<br>
+            <strong>• IA & Société :</strong> Datacenters énergivores et organisation du travail encadrés par l'IA Act.</p>
+            <div class="chips"><span class="chip">Java 26</span><span class="chip">Sécurité</span><span class="chip">IA Act</span></div>
           </div>
         </div>
       </div>
