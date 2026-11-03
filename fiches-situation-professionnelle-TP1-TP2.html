@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fiches de situation professionnelle – TP1 et TP2 – Maël Dalibot</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f6f7f9;
+    --surface: #ffffff;
+    --text: #1d232b;
+    --muted: #5b6672;
+    --line: #d9dee4;
+    --accent: #1f4e8c;
+    --accent-soft: #e6eef8;
+    --code-bg: #eef1f4;
+    --note-bg: #fff6df;
+    --note-line: #e2b94a;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12161b;
+      --surface: #1a2027;
+      --text: #e6e9ed;
+      --muted: #9aa5b1;
+      --line: #2f3944;
+      --accent: #7fb0ec;
+      --accent-soft: #1f2d3f;
+      --code-bg: #242c35;
+      --note-bg: #2d2711;
+      --note-line: #a8862a;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.65;
+    font-size: 1.0625rem;
+  }
+  .page {
+    max-width: 52rem;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 4rem;
+  }
+  header.titre {
+    border-left: 5px solid var(--accent);
+    padding: 0.25rem 0 0.25rem 1.25rem;
+    margin-bottom: 2rem;
+  }
+  header.titre p.type {
+    margin: 0 0 0.35rem;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  header.titre h2 {
+    margin: 0 0 0.6rem;
+    font-size: clamp(1.6rem, 4.5vw, 2.3rem);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  header.titre p.auteur { margin: 0; color: var(--muted); }
+
+  section {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1.5rem 1.6rem;
+    margin-bottom: 1.25rem;
+  }
+  h3 {
+    margin: 0 0 0.9rem;
+    font-size: 1.35rem;
+    line-height: 1.3;
+    color: var(--accent);
+  }
+  h4 {
+    margin: 1.6rem 0 0.5rem;
+    font-size: 1.1rem;
+    line-height: 1.35;
+  }
+  h4:first-of-type { margin-top: 0.4rem; }
+  p { margin: 0 0 0.9rem; max-width: 70ch; }
+  ul { margin: 0 0 0.9rem; padding-left: 1.3rem; }
+  li { margin-bottom: 0.4rem; max-width: 70ch; }
+  li > ul { margin-top: 0.4rem; margin-bottom: 0.2rem; }
+  section > :last-child { margin-bottom: 0; }
+
+  dl.identite { margin: 0; display: grid; gap: 0.15rem 1.25rem; grid-template-columns: 1fr; }
+  dl.identite dt { font-weight: 600; margin-top: 0.7rem; }
+  dl.identite dd { margin: 0; color: var(--text); }
+  @media (min-width: 40rem) {
+    dl.identite { grid-template-columns: 12rem 1fr; }
+    dl.identite dt { margin-top: 0; padding: 0.55rem 0; border-top: 1px solid var(--line); }
+    dl.identite dd { padding: 0.55rem 0; border-top: 1px solid var(--line); }
+    dl.identite dt:first-of-type, dl.identite dt:first-of-type + dd { border-top: 0; }
+  }
+
+  code {
+    font-family: ui-monospace, "SF Mono", Consolas, "Liberation Mono", monospace;
+    font-size: 0.92em;
+    background: var(--code-bg);
+    padding: 0.1em 0.38em;
+    border-radius: 4px;
+  }
+  .a-completer {
+    background: var(--note-bg);
+    border-bottom: 2px solid var(--note-line);
+    padding: 0 0.25em;
+    border-radius: 3px;
+  }
+  .note {
+    background: var(--note-bg);
+    border-left: 4px solid var(--note-line);
+    padding: 0.6rem 0.9rem;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.97rem;
+    color: var(--text);
+  }
+  a { color: var(--accent); text-underline-offset: 3px; overflow-wrap: anywhere; }
+  a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+  strong { font-weight: 650; }
+
+
+  .entete { margin-bottom: 2.25rem; }
+  .entete h1 { margin: 0 0 0.4rem; font-size: clamp(1.7rem, 5vw, 2.4rem); line-height: 1.15; letter-spacing: -0.01em; }
+  .entete > p { color: var(--muted); margin: 0 0 1.1rem; }
+  nav.sommaire ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  nav.sommaire li { margin: 0; }
+  nav.sommaire a { display: block; padding: 0.55rem 0.95rem; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); text-decoration: none; font-weight: 600; }
+  nav.sommaire a:hover { background: var(--accent-soft); }
+  article { scroll-margin-top: 1rem; }
+  article + article { margin-top: 3.5rem; padding-top: 2.5rem; border-top: 2px solid var(--line); }
+
+  .table-wrap { overflow-x: auto; margin: 0 0 1rem; border: 1px solid var(--line); border-radius: 8px; }
+  table { border-collapse: collapse; width: 100%; min-width: 34rem; font-size: 0.95rem; line-height: 1.5; }
+  th, td { text-align: left; padding: 0.5rem 0.7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  thead th { background: var(--accent-soft); }
+  tbody th { font-weight: 600; }
+  tbody tr:last-child > * { border-bottom: 0; }
+
+  @media print {
+    :root { --bg: #fff; --surface: #fff; --text: #000; --muted: #333; --line: #bbb; --accent: #1f4e8c; --code-bg: #eee; --note-bg: #fff; --note-line: #999; }
+    body { font-size: 11pt; }
+    .page { padding: 0; max-width: none; }
+    section { break-inside: avoid-page; border-radius: 0; }
+    h4 { break-after: avoid; }
+    article + article { break-before: page; border-top: 0; padding-top: 0; margin-top: 0; }
+    nav.sommaire { display: none; }
+    .table-wrap { overflow: visible; }
+    table { min-width: 0; }
+    a { color: inherit; }
+  }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <div class="entete">
+    <h1>Fiches de situation professionnelle</h1>
+    <p>Maël Dalibot · BTS Services Informatiques aux Organisations (SIO), 1ère année · Baie-Mahault, Guadeloupe</p>
+    <nav class="sommaire" aria-label="Sommaire">
+      <ul>
+        <li><a href="#situation-1">Situation 1 · TP1 : installation et administration de Windows</a></li>
+        <li><a href="#situation-2">Situation 2 · TP2 : composants matériels d’une STA</a></li>
+      </ul>
+    </nav>
+  </div>
+
+<article id="situation-1">
+
+  <header class="titre">
+    <p class="type">Situation 1 · TP1</p>
+    <h2>Installation, configuration et administration d’un poste de travail Windows (TP1 – SISR)</h2>
+    <p class="auteur">Maël Dalibot · BTS Services Informatiques aux Organisations (SIO), 1ère année · Baie-Mahault, Guadeloupe</p>
+  </header>
+
+  <section id="tp1-identification">
+    <h3>1. Identification de la situation</h3>
+    <dl class="identite">
+      <dt>Intitulé</dt>
+      <dd>Installation, configuration et administration d’un système d’exploitation orienté poste de travail (Windows Professionnel)</dd>
+      <dt>Nature</dt>
+      <dd>Travaux pratiques (TP1), matière SISR (Solutions d’Infrastructure, Systèmes et Réseaux)</dd>
+      <dt>Année / période</dt>
+      <dd>BTS SIO 1ère année, année scolaire 2025-2026 <span class="a-completer">(dates exactes à compléter)</span></dd>
+      <dt>Lieu de réalisation</dt>
+      <dd>Centre de formation, en salle informatique <span class="a-completer">(nom de l’établissement à compléter)</span></dd>
+      <dt>Modalité</dt>
+      <dd>Travail individuel sur machine virtuelle</dd>
+      <dt>Document de référence</dt>
+      <dd>Compte rendu TP1 (PDF) hébergé sur mon <a href="https://maeldalibot62-blip.github.io/MaelD/">portfolio</a></dd>
+    </dl>
+  </section>
+
+  <section id="tp1-contexte">
+    <h3>2. Contexte</h3>
+    <p>Dans le cadre de ma formation, j’ai travaillé sur une situation proche de celle d’un technicien qui prépare et met à disposition un poste de travail dans une organisation. Il s’agissait de partir d’une machine vierge, d’installer le système d’exploitation, de préparer le stockage, de créer les comptes des utilisateurs, d’installer les logiciels nécessaires et d’appliquer des règles de sécurité et de configuration.</p>
+    <p>Pour ne pas dépendre d’un matériel physique et pouvoir recommencer en cas d’erreur, tout le travail a été réalisé dans une <strong>machine virtuelle</strong> (VM nommée « station0 ») sous VirtualBox.</p>
+  </section>
+
+  <section id="tp1-besoin">
+    <h3>3. Besoin et objectifs</h3>
+    <p><strong>Objectif général :</strong> maîtriser les étapes d’installation, de configuration et d’administration d’un système d’exploitation orienté poste de travail.</p>
+    <p>Objectifs opérationnels :</p>
+    <ul>
+      <li>installer le système sur une VM et en réaliser un clone ;</li>
+      <li>organiser le disque en partitions et choisir le bon système de fichiers ;</li>
+      <li>créer et gérer des comptes utilisateurs avec des droits différents ;</li>
+      <li>installer les logiciels nécessaires, y compris à partir d’une clé USB ;</li>
+      <li>comprendre et utiliser les outils d’administration (registre, consoles MMC, stratégies de groupe, PowerShell) ;</li>
+      <li>vérifier le bon fonctionnement du poste par des tests.</li>
+    </ul>
+  </section>
+
+  <section id="tp1-environnement">
+    <h3>4. Environnement technique</h3>
+    <ul>
+      <li><strong>Virtualisation :</strong> Oracle VirtualBox, Extension Pack pour la prise en charge de l’USB, VM « station0 » et son clone</li>
+      <li><strong>Système d’exploitation :</strong> Windows Professionnel (ISO de Windows 10 finalement utilisé, voir section 6)</li>
+      <li><strong>Outils Windows :</strong> Gestion des disques (<code>diskmgmt.msc</code>), Utilisateurs et groupes locaux (<code>lusrmgr.msc</code>), Gestionnaire de périphériques (<code>devmgmt.msc</code>), Éditeur de stratégie de groupe locale (<code>gpedit</code>), Éditeur du registre, invite de commandes, PowerShell</li>
+      <li><strong>Logiciels installés :</strong> WinRAR, suite bureautique OpenOffice/LibreOffice, Mozilla Firefox</li>
+      <li><strong>Matériel :</strong> poste hôte, clé USB</li>
+      <li><strong>Ressources :</strong> documentation officielle, recherches en ligne, supports de cours</li>
+    </ul>
+  </section>
+
+  <section id="tp1-realisation">
+    <h3>5. Description de ma réalisation</h3>
+
+    <h4>5.1 Création de la VM et de son clone (étapes 1 à 3)</h4>
+    <p>J’ai créé la machine virtuelle, installé le système à partir de l’image ISO, puis réalisé un clone afin de conserver une version saine du poste.</p>
+
+    <h4>5.2 Partitionnement et système de fichiers (étape 4)</h4>
+    <p>J’ai d’abord étudié les notions utiles :</p>
+    <ul>
+      <li><strong>Partitionnement :</strong> découpage d’un support en zones indépendantes. <strong>Formatage :</strong> préparation d’une partition pour que le système puisse y organiser les fichiers.</li>
+      <li><strong>MBR :</strong> ancien standard, limité à 2 To et à 4 partitions principales (ou 3 principales et 1 étendue). Une seule copie de la table de partitions est stockée, donc plus de risques en cas de corruption.</li>
+      <li><strong>GPT :</strong> standard moderne lié à l’UEFI, qui gère de très gros disques, jusqu’à 128 partitions sous Windows, et conserve une copie de secours de la table.</li>
+      <li><strong>FAT16 / FAT32 :</strong> simples et très compatibles, mais sans permissions ni journalisation, avec une limite de 4 Gio par fichier pour FAT32.</li>
+      <li><strong>NTFS :</strong> système de fichiers par défaut de Windows, avec journalisation, permissions (ACL), quotas, compression et mécanismes de récupération.</li>
+    </ul>
+    <p>Ensuite, en pratique, via l’outil « Gestion des disques » :</p>
+    <ul>
+      <li>j’ai réduit le disque virtuel de 64 Go à 54 Go pour créer une nouvelle partition nommée « données » ;</li>
+      <li>j’ai testé le partitionnement en <strong>GPT</strong>, qui a fonctionné sans problème ;</li>
+      <li>j’ai converti le disque en <strong>MBR</strong> (après suppression des partitions existantes, indispensable pour la conversion) et constaté qu’avec ce format, certaines partitions restaient en espace libre ;</li>
+      <li>j’ai créé 5 partitions : 3 partitions principales et 1 partition étendue contenant 2 partitions logiques ;</li>
+      <li>j’ai ensuite supprimé la seconde partition pour <strong>étendre le volume</strong> de la première en lui réaffectant l’espace libre.</li>
+    </ul>
+    <p>J’en ai retenu qu’une partition principale est une séparation de données utilisable directement, alors qu’une partition étendue sert de conteneur à des partitions logiques.</p>
+
+    <h4>5.3 Création et gestion des comptes utilisateurs</h4>
+    <ul>
+      <li>Création des comptes via Paramètres puis Comptes, avec changement du type de compte (utilisateur local vers administrateur) : comptes <strong>admin2</strong> et <strong>etudiant</strong>, en plus des comptes déjà présents (<strong>tepson</strong>, <strong>Public</strong>, <strong>Admin</strong>).</li>
+      <li>Test d’accès : les comptes tepson et etudiant ne pouvaient pas accéder à certains dossiers faute de droits, ce qui confirme que les permissions fonctionnent.</li>
+      <li>Distinction des profils : l’<strong>administrateur</strong> a accès à tout et peut tout modifier, l’<strong>utilisateur standard</strong> n’accède qu’à certains dossiers, l’<strong>invité</strong> a des droits très limités.</li>
+      <li>Notions clés : l’<strong>authentification</strong> (mot de passe, code PIN, question secrète) prouve qui on est, l’<strong>identification</strong> (identifiant, UID, e-mail, nom complet) désigne qui on est. Le <strong>compte</strong> est une entité permanente, la <strong>session</strong> est temporaire.</li>
+    </ul>
+
+    <h4>5.4 Installation des logiciels via une clé USB (étape 5)</h4>
+    <ul>
+      <li>Téléchargement sur la machine hôte de WinRAR, d’une suite bureautique (OpenOffice/LibreOffice) et de Firefox depuis leurs sites officiels, puis copie sur la clé USB.</li>
+      <li>Installation du <strong>VirtualBox Extension Pack</strong> pour activer l’USB 2.0/3.0.</li>
+      <li>Sur la VM arrêtée : activation du contrôleur USB (EHCI ou xHCI selon la clé), puis ajout d’un <strong>filtre USB</strong> pour que la clé soit reconnue automatiquement.</li>
+      <li>Installation des trois logiciels dans la VM.</li>
+    </ul>
+
+    <h4>5.5 Base de registre (étape 6)</h4>
+    <p>J’ai étudié la base de registre, base de données hiérarchique qui stocke la configuration du système, du matériel, des logiciels et des utilisateurs. Elle est composée de <strong>ruches</strong> (fichiers sur le disque), de <strong>clés</strong> (comparables à des dossiers) et de <strong>valeurs</strong> (les paramètres : nom, type, donnée). J’ai identifié le rôle des cinq clés racines :</p>
+    <ul>
+      <li><strong>HKEY_CURRENT_USER :</strong> configuration de l’utilisateur connecté ;</li>
+      <li><strong>HKEY_LOCAL_MACHINE :</strong> configuration globale de la machine (pilotes, sécurité, réseau) ;</li>
+      <li><strong>HKEY_USERS :</strong> profils de tous les utilisateurs, identifiés par leur SID ;</li>
+      <li><strong>HKEY_CURRENT_CONFIG :</strong> raccourci vers le profil matériel actif ;</li>
+      <li><strong>HKEY_CLASSES_ROOT :</strong> associations de types de fichiers et de logiciels.</li>
+    </ul>
+    <p>J’ai aussi noté le rôle des protections système (antivirus, pare-feu) face aux logiciels malveillants.</p>
+
+    <h4>5.6 Consoles MMC (étape 7)</h4>
+    <p>La console <strong>MMC</strong> (Microsoft Management Console) est un cadre qui centralise des outils d’administration sous forme de « composants logiciels enfichables ». J’ai relevé les commandes d’accès rapide :</p>
+    <ul>
+      <li>Gestion des disques : <code>diskmgmt.msc</code></li>
+      <li>Utilisateurs et groupes locaux : <code>lusrmgr.msc</code></li>
+      <li>Gestionnaire de périphériques : <code>devmgmt.msc</code></li>
+    </ul>
+
+    <h4>5.7 Stratégies de groupe (étape 8)</h4>
+    <p>Les <strong>GPO</strong> permettent de configurer et sécuriser un parc informatique sans intervenir poste par poste : la règle est définie une fois puis appliquée automatiquement.</p>
+    <ul>
+      <li><strong>Configuration ordinateur :</strong> s’applique à la machine, au démarrage, quel que soit l’utilisateur (pare-feu, stratégie de mots de passe).</li>
+      <li><strong>Configuration utilisateur :</strong> suit l’utilisateur d’un poste à l’autre, à l’ouverture de session (fond d’écran, menu Démarrer, lecteurs réseau).</li>
+    </ul>
+    <p>J’ai appliqué trois restrictions via <code>gpedit</code> (Configuration utilisateur, Modèles d’administration) :</p>
+    <ul>
+      <li><strong>Bureau :</strong> supprimer l’icône de la Corbeille ;</li>
+      <li><strong>Panneau de configuration :</strong> interdire l’accès au Panneau de configuration ;</li>
+      <li><strong>Système :</strong> désactiver l’accès à l’invite de commandes.</li>
+    </ul>
+
+    <h4>5.8 Variables d’environnement et PowerShell (étape 9)</h4>
+    <ul>
+      <li>Une <strong>variable d’environnement</strong> est une paire nom = valeur consultable par le système et les logiciels (par exemple le dossier Windows).</li>
+      <li>La console <strong>PowerShell (modules)</strong> charge dès le démarrage les modules système (réseau, sécurité, stockage) et sert à administrer en ligne de commande et à tester des scripts. Elle doit être lancée en administrateur pour les tâches d’administration.</li>
+      <li>Vérification de l’identité de la machine avec <code>echo %COMPUTERNAME%</code> et <code>echo %USERNAME%</code>, puis recoupement avec les informations affichées dans les paramètres de l’appareil : les valeurs concordent.</li>
+    </ul>
+  </section>
+
+  <section id="tp1-difficultes">
+    <h3>6. Difficultés rencontrées et solutions</h3>
+    <ul>
+      <li><strong>Erreur à l’installation de Windows 11 :</strong> j’ai consulté la documentation officielle et suivi les étapes de dépannage. Le problème étant technique, j’ai finalement choisi d’installer <strong>Windows 10 Professionnel</strong>, qui répondait aux mêmes objectifs pédagogiques.</li>
+      <li><strong>Incompatibilité avec certains logiciels :</strong> j’ai recherché des alternatives compatibles.</li>
+      <li><strong>Problèmes réseau :</strong> j’ai vérifié les paramètres et redémarré les services réseau.</li>
+      <li><strong>Conversion MBR/GPT :</strong> j’ai compris qu’il faut supprimer les partitions avant de convertir le disque, et que le MBR gère moins bien le découpage prévu.</li>
+    </ul>
+  </section>
+
+  <section id="tp1-resultats">
+    <h3>7. Résultats et productions</h3>
+    <ul>
+      <li>Une VM Windows fonctionnelle, son clone, et un disque partitionné avec une partition « données » ;</li>
+      <li>Plusieurs comptes aux droits différents, dont l’accès a été testé ;</li>
+      <li>Les logiciels demandés installés depuis une clé USB reconnue par la VM ;</li>
+      <li>Des restrictions appliquées par stratégie de groupe ;</li>
+      <li>Un <strong>compte rendu écrit</strong> (TP1) documentant la procédure et les notions étudiées.</li>
+    </ul>
+  </section>
+
+  <section id="tp1-competences">
+    <h3>8. Compétences mobilisées</h3>
+    <p class="note">À rapprocher des libellés exacts de votre référentiel et de votre tableau de synthèse.</p>
+    <ul>
+      <li><strong>Support et mise à disposition de services informatiques</strong>
+        <ul>
+          <li>Mettre à disposition des utilisateurs un service informatique : installation d’un poste, création de comptes, installation de logiciels</li>
+          <li>Répondre aux incidents et aux demandes : diagnostic et résolution des erreurs d’installation et de réseau</li>
+          <li>Gérer le patrimoine informatique : identification des composants et des paramètres de la machine</li>
+          <li>Organiser son développement professionnel : recherches, lecture de la documentation officielle, rédaction d’un compte rendu</li>
+        </ul>
+      </li>
+      <li><strong>Option SISR (administration systèmes et réseaux)</strong>
+        <ul>
+          <li>Installer, tester et déployer une solution d’infrastructure : poste Windows virtualisé et configuré</li>
+          <li>Exploiter et dépanner : utilisation des consoles MMC, de la ligne de commande et des stratégies de groupe</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+  <section id="tp1-bilan">
+    <h3>9. Bilan personnel</h3>
+    <p>Ce TP m’a permis de comprendre concrètement ce qui se passe lorsqu’on prépare un poste de travail, de l’installation jusqu’à la sécurisation. J’ai appris à utiliser la virtualisation pour tester sans risque, à documenter chaque étape et à persévérer face à un blocage, en changeant de version de Windows lorsque c’était nécessaire.</p>
+    <p>Pistes d’amélioration : approfondir les GPO dans un environnement Active Directory, automatiser certaines tâches en PowerShell et mieux structurer mes comptes rendus (captures d’écran, tests de validation).</p>
+  </section>
+
+  <section id="tp1-annexes">
+    <h3>10. Annexes</h3>
+    <ul>
+      <li><a href="https://maeldalibot62-blip.github.io/MaelD/TP1_DALIBOT.CHROME%20PDF.pdf">Compte rendu TP1 (PDF)</a></li>
+      <li><a href="https://maeldalibot62-blip.github.io/MaelD/">Portfolio de Maël Dalibot</a></li>
+    </ul>
+  </section>
+
+</article>
+
+<article id="situation-2">
+
+  <header class="titre">
+    <p class="type">Situation 2 · TP2</p>
+    <h2>Étude des caractéristiques techniques des composants matériels d’une STA (Solution Technique d’Accès)</h2>
+    <p class="auteur">Travail réalisé en binôme avec Biabiany Hedreville · matière SISR</p>
+  </header>
+
+  <section id="tp2-identification">
+    <h3>1. Identification de la situation</h3>
+    <dl class="identite">
+      <dt>Intitulé</dt>
+      <dd>Étude des caractéristiques techniques des composants matériels d’une STA (Solution Technique d’Accès)</dd>
+      <dt>Nature</dt>
+      <dd>Travaux pratiques (TP2), matière SISR (Solutions d’Infrastructure, Systèmes et Réseaux)</dd>
+      <dt>Année / période</dt>
+      <dd>BTS SIO 1ère année, année scolaire 2025-2026 <span class="a-completer">(dates exactes à compléter)</span></dd>
+      <dt>Lieu de réalisation</dt>
+      <dd>Centre de formation <span class="a-completer">(nom de l’établissement à compléter)</span></dd>
+      <dt>Modalité</dt>
+      <dd>Travail en binôme, recherches documentaires</dd>
+      <dt>Document de référence</dt>
+      <dd><a href="https://maeldalibot62-blip.github.io/MaelD/TP2_DALIBOT%20et%20BIABIANY%20HEDREVILLE.pdf">Compte rendu TP2 (PDF)</a> hébergé sur mon <a href="https://maeldalibot62-blip.github.io/MaelD/">portfolio</a></dd>
+    </dl>
+  </section>
+
+  <section id="tp2-contexte">
+    <h3>2. Contexte</h3>
+    <p>Une organisation souhaite équiper ses collaborateurs de postes de travail. Avant tout achat, il faut savoir lire un cahier des charges, identifier les composants d’un poste, comprendre leur rôle et comparer les offres sur des critères techniques mesurables.</p>
+    <p>Le poste visé est un <strong>portable professionnel fin</strong> (1,8 kg maximum) accompagné d’une <strong>station d’accueil</strong> qui permet de l’utiliser comme un poste fixe. Ce TP est une étude documentaire : il n’y a pas de manipulation sur machine.</p>
+  </section>
+
+  <section id="tp2-besoin">
+    <h3>3. Besoin et objectifs</h3>
+    <p><strong>Objectif général :</strong> connaître et différencier les caractéristiques techniques des composants matériels d’une STA.</p>
+    <p>Objectifs opérationnels :</p>
+    <ul>
+      <li>recenser les composants du poste et expliquer le rôle et les fonctionnalités de chacun ;</li>
+      <li>estimer le coût d’un poste ;</li>
+      <li>identifier les critères qui permettent de mesurer la performance de chaque composant ;</li>
+      <li>comparer plusieurs technologies pour chaque composant et choisir celle qui répond au cahier des charges ;</li>
+      <li>maîtriser les unités de mesure utilisées dans les fiches techniques.</li>
+    </ul>
+  </section>
+
+  <section id="tp2-environnement">
+    <h3>4. Environnement et ressources</h3>
+    <ul>
+      <li><strong>Support :</strong> cahier des charges du poste (lot 2), documentation constructeurs et sources en ligne</li>
+      <li><strong>Outils :</strong> navigateur web, traitement de texte pour le compte rendu</li>
+      <li><strong>Organisation :</strong> répartition et mise en commun des recherches en binôme</li>
+    </ul>
+  </section>
+
+  <section id="tp2-realisation">
+    <h3>5. Description de ma réalisation</h3>
+
+    <h4>5.1 Rôles, fonctionnalités et prix des composants (étape 1)</h4>
+    <p>J’ai listé les composants du poste, défini leur rôle et leur fonctionnalité principale, puis relevé une fourchette de prix.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th scope="col">Composant</th><th scope="col">Rôle</th><th scope="col">Fonctionnalité</th><th scope="col">Prix approximatif</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Format du portable</th><td>Définir l’enveloppe physique</td><td>Contrainte technique</td><td>–</td></tr>
+          <tr><th scope="row">Processeur</th><td>Calculer et exécuter les instructions</td><td>Traiter</td><td>~360 €</td></tr>
+          <tr><th scope="row">Carte mère</th><td>Accueillir tous les composants</td><td>Communiquer</td><td>110 à 150 €</td></tr>
+          <tr><th scope="row">Carte graphique</th><td>Générer l’image affichée et soulager le processeur</td><td>Convertir les données numériques en signaux pixels</td><td>Intégrée au processeur</td></tr>
+          <tr><th scope="row">Contrôleur de disque</th><td>Faire l’interface entre carte mère et disque</td><td>Transmettre les données</td><td>30 à 70 €</td></tr>
+          <tr><th scope="row">Réseau</th><td>Connecter l’ordinateur au reste du monde</td><td>Interconnecter</td><td>15 à 25 €</td></tr>
+          <tr><th scope="row">Mémoire vive</th><td>Stocker temporairement données et applications</td><td>Stocker</td><td>~70 €</td></tr>
+          <tr><th scope="row">Disque dur</th><td>Conserver durablement les données</td><td>Stocker</td><td>25 à 40 €</td></tr>
+          <tr><th scope="row">Multimédia</th><td>Capturer des images (visioconférence)</td><td>Acquérir des données</td><td>20 à 35 €</td></tr>
+          <tr><th scope="row">Ports et emplacements</th><td>Brancher des périphériques tiers</td><td>Interconnecter des interfaces</td><td>–</td></tr>
+          <tr><th scope="row">Batterie</th><td>Alimenter l’ordinateur en énergie</td><td>Alimenter</td><td>40 à 60 €</td></tr>
+          <tr><th scope="row">Sécurité</th><td>Identifier l’utilisateur pour ouvrir la session</td><td>Protéger les données</td><td>17 à 40 €</td></tr>
+          <tr><th scope="row">Station d’accueil</th><td>Passer d’un portable à un poste fixe</td><td>Interconnecter</td><td>50 à 85 €</td></tr>
+          <tr><th scope="row">Poids maximum</th><td>Rester transportable</td><td>Contrainte technique</td><td>–</td></tr>
+          <tr><th scope="row">Accessoires</th><td>Protéger, optimiser, sécuriser</td><td>Protéger</td><td>80 à 100 €</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Le compte rendu annonce un total d’environ <strong>800 € par ordinateur</strong>.</p>
+    <p class="note">À vérifier avant de rendre le dossier : le compte rendu indique que ce total prend en compte les prix les plus élevés, or la somme des prix bas des fourchettes donne environ 820 €, et celle des prix hauts environ 1 035 €. Le chiffre de 800 € correspond donc plutôt à la fourchette basse.</p>
+
+    <h4>5.2 Critères de performance de chaque composant (étape 2, partie 3)</h4>
+    <ul>
+      <li><strong>Processeur :</strong> fréquence d’horloge (GHz), nombre de cœurs, mémoire cache L1/L2/L3 (Mo), TDP (consommation thermique).</li>
+      <li><strong>Carte mère :</strong> chipset, canaux et slots mémoire, connectique intégrée.</li>
+      <li><strong>Mémoire vive :</strong> type (DDR2, DDR3, DDR4), fréquence, bande passante, latence, capacité, tension.</li>
+      <li><strong>Stockage :</strong> type (HDD ou SSD), vitesse de rotation, débit séquentiel, temps d’accès, capacité, interface (SATA, SAS, NVMe), IOPS, endurance (TBW).</li>
+      <li><strong>Carte graphique :</strong> processeur graphique, mémoire vidéo dédiée, bande passante, consommation, sorties vidéo.</li>
+      <li><strong>Réseau :</strong> type de support, cuivre (RJ45) ou fibre optique, avec leur portée et leur immunité aux interférences.</li>
+      <li><strong>Ports externes :</strong> débit, nombre de ports, alimentation fournie, connexion à chaud (hot-plug) et plug-and-play.</li>
+      <li><strong>Batterie :</strong> capacité (Wh), consommation des composants, autonomie réelle.</li>
+      <li><strong>Écran de la station d’accueil :</strong> diagonale, résolution, technologie, luminosité, contraste, temps de réponse, angles de vision.</li>
+    </ul>
+
+    <h4>5.3 Comparaison des composants (étape 2, partie 4)</h4>
+    <p><strong>Processeurs.</strong> Les trois familles étudiées ont toutes 4 cœurs physiques, l’HyperThreading (8 threads) et le Turbo Boost :</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th scope="col">Caractéristique</th><th scope="col">Intel Xeon série 5500</th><th scope="col">Intel Core i7</th><th scope="col">Intel Core i5 (4 cœurs)</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Cible</th><td>Serveurs et stations de travail</td><td>Haut de gamme grand public</td><td>Milieu de gamme grand public</td></tr>
+          <tr><th scope="row">Cache L3</th><td>4 à 8 Mo</td><td>4 à 8 Mo</td><td>6 à 8 Mo</td></tr>
+          <tr><th scope="row">Particularités</th><td>Mémoire ECC, QPI, multi-socket, virtualisation avancée</td><td>Fréquences les plus élevées</td><td>Meilleur rapport performance/prix</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>J’ai aussi retenu la hiérarchie des caches : plus on s’éloigne du cœur, plus la mémoire est grande mais lente (L1 &lt; L2 &lt; L3 &lt; RAM en temps d’accès). Le Xeon est conçu pour un fonctionnement 24h/24, l’i7 privilégie la puissance brute et l’i5 le rapport qualité-prix.</p>
+
+    <p><strong>Mémoires vives.</strong></p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th scope="col">Type</th><th scope="col">Fréquences</th><th scope="col">Tension</th><th scope="col">Particularité</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">SDRAM DDR2</th><td>400 à 800 MHz</td><td>1,8 V</td><td>Ancienne génération, débit limité</td></tr>
+          <tr><th scope="row">SDRAM DDR3</th><td>800 à 2 133 MHz</td><td>1,5 V</td><td>Débit doublé, consommation réduite</td></tr>
+          <tr><th scope="row">SDRAM DDR4</th><td>2 133 à 3 200 MHz</td><td>1,2 V</td><td>Très haut débit, faible consommation</td></tr>
+          <tr><th scope="row">RDRAM (Rambus)</th><td>400 à 800 MHz</td><td>2,5 V</td><td>Propriétaire, très chère, premiers Pentium 4</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Le format imposé par le cahier des charges est la <strong>SO-DIMM</strong> (version compacte pour portables), à la différence de la DIMM (bureau) et de la SIMM (ancien format).</p>
+
+    <p><strong>Stockage.</strong></p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th scope="col">Type</th><th scope="col">Interface</th><th scope="col">Débit</th><th scope="col">Usage</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">SATA II</th><td>3 Gb/s</td><td>~300 Mo/s</td><td>Interne grand public</td></tr>
+          <tr><th scope="row">SSD</th><td>SATA 6 Gb/s ou NVMe</td><td>500 Mo/s à 3 Go/s</td><td>Accès quasi instantané, silencieux, résistant aux chocs</td></tr>
+          <tr><th scope="row">SCSI parallèle</th><td>Parallèle</td><td>160 à 320 Mo/s</td><td>Ancien standard serveurs</td></tr>
+          <tr><th scope="row">SAS</th><td>Série, jusqu’à 12 Gb/s</td><td>–</td><td>Serveurs : fiabilité, disponibilité 24h/24, hot-plug</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Pour un portable, le SSD s’impose : il est insensible aux chocs, rapide et sobre en énergie.</p>
+
+    <p><strong>Réseau.</strong></p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th scope="col">Norme</th><th scope="col">Support</th><th scope="col">Débit</th><th scope="col">Portée</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">10/100BASE-TX</th><td>Cuivre (RJ45)</td><td>10 / 100 Mbit/s</td><td>100 m</td></tr>
+          <tr><th scope="row">1000BASE-T (Gigabit)</th><td>Cuivre (RJ45)</td><td>1 000 Mbit/s</td><td>100 m</td></tr>
+          <tr><th scope="row">100/1000BASE-FX</th><td>Fibre optique</td><td>100 Mbit/s à 1 Gbit/s</td><td>Plusieurs km, insensible aux interférences</td></tr>
+          <tr><th scope="row">Wi-Fi 802.11g</th><td>Radio 2,4 GHz</td><td>54 Mbit/s</td><td>30 à 50 m en intérieur</td></tr>
+          <tr><th scope="row">Wi-Fi 802.11a</th><td>Radio 5 GHz</td><td>54 Mbit/s</td><td>Moins de portée, moins d’interférences</td></tr>
+          <tr><th scope="row">Wi-Fi 802.11n</th><td>Radio 2,4 / 5 GHz</td><td>300 à 600 Mbit/s</td><td>Meilleure portée grâce au MIMO</td></tr>
+          <tr><th scope="row">Bluetooth</th><td>Radio courte portée</td><td>1 à 3 Mbit/s</td><td>~10 m, périphériques sans fil</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Le Gigabit Ethernet est indispensable pour un poste en entreprise (débit dix fois supérieur au Fast Ethernet), et le Wi-Fi n apporte le confort sans fil avec un débit proche du filaire.</p>
+
+    <p><strong>Autres éléments comparés :</strong></p>
+    <ul>
+      <li><strong>Cartes graphiques :</strong> Intel HD intégrée (mémoire partagée avec la RAM, économe), NVIDIA GeForce GT 120 (carte dédiée d’entrée de gamme) et GT 330M (carte dédiée pour portables, 3D et CUDA). Une carte dédiée est plus performante en 3D mais consomme davantage, ce qui est critique sur un portable.</li>
+      <li><strong>Bus :</strong> PCI (1993, 133 Mo/s), AGP 8x (2,1 Go/s, réservé à la carte graphique) et PCI Express (depuis 2004, série et bidirectionnel), qui a remplacé les deux autres.</li>
+      <li><strong>Connecteurs vidéo :</strong> VGA (analogique, ancien), DVI (numérique, jusqu’à 2560×1600 en dual link) et HDMI (image et son, 4K sur les versions récentes).</li>
+      <li><strong>Ports :</strong> PS/2, série (RS232), parallèle, USB 2.0 (480 Mbit/s), USB 3.0 (4,8 Gbit/s) et FireWire (400/800 Mbit/s).</li>
+      <li><strong>Graveurs :</strong> CD-R/RW (700 Mo), DVD±R/RW dual layer (4,7 / 8,5 Go) et Blu-ray (25 / 50 Go).</li>
+      <li><strong>Formats de carte mère :</strong> ATX (305×244 mm), micro-ATX (244×244 mm), mini-ITX (170×170 mm) et BTX (abandonné).</li>
+    </ul>
+
+    <h4>5.4 Synthèse pour le cahier des charges</h4>
+    <p>J’ai conclu avec une configuration cohérente avec le besoin :</p>
+    <ul>
+      <li>processeur <strong>Core i5 quad-core</strong> (8 threads, Turbo Boost, cache 8 Mo) pour la virtualisation et le multitâche ;</li>
+      <li><strong>8 Go de DDR3 SO-DIMM</strong> en dual channel ;</li>
+      <li><strong>SSD de 128 Go</strong>, pour la robustesse et la vitesse ;</li>
+      <li><strong>Gigabit Ethernet</strong> et <strong>Wi-Fi n</strong> ;</li>
+      <li>connectique USB, eSATA, VGA et DisplayPort ;</li>
+      <li>station d’accueil avec écran LED 19″, clavier AZERTY et souris USB.</li>
+    </ul>
+
+    <h4>5.5 Unités de mesure (étape 3)</h4>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th scope="col">Unité</th><th scope="col">Ce qu’elle mesure</th><th scope="col">Composant concerné</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">GHz (gigahertz)</th><td>Fréquence d’horloge : milliards de cycles par seconde</td><td>Processeur (Xeon, Core i5, Core i7)</td></tr>
+          <tr><th scope="row">Mo (mégaoctet)</th><td>Capacité de stockage de données</td><td>Mémoire cache L1, L2, L3</td></tr>
+          <tr><th scope="row">Gb (gigabit)</th><td>Quantité de données (1 octet = 8 bits)</td><td>Mémoire de la carte graphique, selon la consigne</td></tr>
+          <tr><th scope="row">Mbit/s</th><td>Vitesse de transmission par seconde</td><td>Carte réseau et connexion réseau</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Point de vigilance : dans le compte rendu, la mémoire de la carte graphique est notée en Go (1 Go de GDDR3), alors que la consigne parle de Gb. La mémoire vidéo s’exprime en octets (Go), le gigabit (Gb) sert plutôt aux débits. Ce point est signalé comme « à vérifier » dans le compte rendu.</p>
+  </section>
+
+  <section id="tp2-difficultes">
+    <h3>6. Difficultés rencontrées et solutions</h3>
+    <ul>
+      <li><strong>Quantité d’informations techniques :</strong> pour ne pas me perdre, j’ai structuré mes recherches composant par composant, avec les mêmes critères pour chacun.</li>
+      <li><strong>Confusion entre unités (octet et bit, Go et Gb) :</strong> j’ai fait un tableau des unités pour les distinguer et signalé le point à vérifier.</li>
+      <li><strong>Estimation des prix :</strong> les prix varient selon les sources, j’ai donc retenu des fourchettes et non des valeurs uniques.</li>
+    </ul>
+  </section>
+
+  <section id="tp2-resultats">
+    <h3>7. Résultats et productions</h3>
+    <ul>
+      <li>Un tableau des composants avec leur rôle, leur fonctionnalité et leur prix, et une estimation du coût d’un poste ;</li>
+      <li>La liste des critères de performance de chaque composant ;</li>
+      <li>Des tableaux comparatifs : processeurs, mémoires, stockage, cartes graphiques, réseau, bus, connecteurs, ports, graveurs, formats ;</li>
+      <li>Une synthèse argumentée qui répond au cahier des charges du portable ;</li>
+      <li>Un <strong>compte rendu écrit</strong> réalisé en binôme (TP2).</li>
+    </ul>
+  </section>
+
+  <section id="tp2-competences">
+    <h3>8. Compétences mobilisées</h3>
+    <p class="note">À rapprocher des libellés exacts de votre référentiel et de votre tableau de synthèse.</p>
+    <ul>
+      <li><strong>Support et mise à disposition de services informatiques</strong>
+        <ul>
+          <li>Gérer le patrimoine informatique : recenser et caractériser les composants matériels d’un poste</li>
+          <li>Travailler en mode projet : répartition des recherches et mise en commun en binôme</li>
+          <li>Organiser son développement professionnel : recherche documentaire, lecture de fiches techniques, rédaction d’un compte rendu</li>
+        </ul>
+      </li>
+      <li><strong>Option SISR (administration systèmes et réseaux)</strong>
+        <ul>
+          <li>Concevoir une solution d’infrastructure : choisir le matériel à partir d’un cahier des charges, comparer des technologies et estimer un budget</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+  <section id="tp2-bilan">
+    <h3>9. Bilan personnel</h3>
+    <p>Ce TP m’a appris à lire un cahier des charges et à le traduire en choix techniques justifiés. Je sais maintenant ce que signifient les caractéristiques d’une fiche technique (fréquence, cache, débit, interface) et pourquoi un composant convient ou non à un usage donné. Le travail en binôme m’a aussi aidé à confronter mes recherches à celles d’un camarade.</p>
+    <p>Pistes d’amélioration : citer mes sources pour chaque prix et chaque donnée, actualiser les références vers des composants plus récents (DDR4, DDR5, NVMe, Wi-Fi 6) et comparer deux modèles précis de portables.</p>
+  </section>
+
+  <section id="tp2-annexes">
+    <h3>10. Annexes</h3>
+    <ul>
+      <li><a href="https://maeldalibot62-blip.github.io/MaelD/TP2_DALIBOT%20et%20BIABIANY%20HEDREVILLE.pdf">Compte rendu TP2 (PDF)</a></li>
+      <li><a href="https://maeldalibot62-blip.github.io/MaelD/">Portfolio de Maël Dalibot</a></li>
+    </ul>
+  </section>
+
+</article>
+
+</main>
+</body>
+</html>
